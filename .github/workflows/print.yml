@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ntdesmond/html2pdf-action@v1
+      - uses: "imbhargav5/puppeteer-pdf-action@master"
         with:
-          path: ./file.html
+          url: file://file.html
           output: ./file.pdf
           options: |
             {"format": "A4"}
