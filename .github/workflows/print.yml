@@ -1,0 +1,12 @@
+name: puppeteer print action
+run-name: ${{ github.actor }} is printing on  GitHub Actions 🚀
+on: [push]
+jobs:
+  Puppeteer-Print-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: "imbhargav5/puppeteer-pdf-action@master"
+    with:
+      url: https://github.com
+      output-file-path: github.pdf
