@@ -2,12 +2,17 @@ name: puppeteer print action
 run-name: ${{ github.actor }} is printing on  GitHub Actions 🚀
 on: [push]
 jobs:
-  Puppeteer-Print-GitHub-Actions:
+  html2pdf:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: Convert https://github.com to PDF
-        uses: "imbhargav5/puppeteer-pdf-action@master"
+      - uses: actions/checkout@v3
+      - uses: ntdesmond/html2pdf-action@v1
         with:
-          url: https://github.com
-          output-file-path: github.pdf
+          path: ./file.html
+          output: ./file.pdf
+          options: |
+            {"format": "A4"}
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./file.pdf
+
