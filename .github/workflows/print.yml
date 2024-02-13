@@ -2,17 +2,19 @@ name: puppeteer print action
 run-name: ${{ github.actor }} is printing on  GitHub Actions 🚀
 on: [push]
 jobs:
-  html2pdf:
+  html2pdf-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: "imbhargav5/puppeteer-pdf-action@master"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: html2pdf-step
+        uses: ntdesmond/html2pdf-action@v1
         with:
-          url: file://file.html
+          path: ./file.html
           output: ./file.pdf
           options: |
             {"format": "A4"}
-      - uses: actions/upload-artifact@v3
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
         with:
           path: ./file.pdf
-
