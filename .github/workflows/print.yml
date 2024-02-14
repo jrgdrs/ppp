@@ -19,7 +19,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
