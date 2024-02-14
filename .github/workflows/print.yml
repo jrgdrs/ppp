@@ -13,7 +13,7 @@ jobs:
           path: ./file.html
           output: ./file.pdf
           options: |
-            {"preferCSSPageSize": "true"}
+            {"format": "A4"}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
