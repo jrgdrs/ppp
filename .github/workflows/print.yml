@@ -14,17 +14,22 @@ jobs:
           output: ./file.pdf
           options: |
             {"format": "A4"}
+      - name: HTML to PDF with Puppeteer and the real Google Chrome
+        # You may pin to the exact commit or the version.
+        # uses: arthur-jaouen/html2pdf-action@7c06b19d0eaf041b3f34a74f7ea21513c26730e0
+        uses: arthur-jaouen/html2pdf-action@v1
+        with:
+          # Path to the html to be converted
+          inputPath: ./file.html
+          # Path of the output PDF
+          outputPath: ./filec.pdf
+          # Puppeteer PDF options (see https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.pdfoptions.md#pdfoptions-interface)
+          pdfOptions: # optional, default is { }
+          
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          path: ./file.pdf
-      - name: Save production artifacts
-        uses: actions/download-artifact@v4
-      - name: Display structure of downloaded files
-        run: ls -R
+
